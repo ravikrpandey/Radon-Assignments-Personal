@@ -1,2 +1,2 @@
-# thorium
-Backend cohort Feb 2022 - May 2022
+# radon
+Backend cohort May 2022 - Sep 2022
