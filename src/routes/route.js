@@ -7,7 +7,7 @@ router.get('/students/:name', function(req, res) {
     res.send(studentName)
 })
 
-router.get("/random" , function(req, res) {
+router.get("/radon" , function(req, res) {
     res.send("hi there")
 })
 
@@ -69,5 +69,86 @@ router.post("/test-post-4", function(req, res) {
     arr.push(ele)
     res.send(  { msg: arr , status: true }  )
 })
+
+
+
+// Problem Statement 1 :
+// Given by pritesh sir..,
+
+// NOTE: you must create the players array outside( on the top ) of the api
+// ( so that data is maintained across api hits )
+// Your player collection should be an ARRAY of player objects.
+// Each player object should have the following attributes:
+// {
+// "name": "manish",
+// "dob": "1/1/1995",
+// "gender": "male",
+// "city": "jalandhar",
+// "sports": [
+// "swimming"
+// ]
+// }
+
+// Solution:-
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+ 
+   router.post('/players', function (req, res) {
+ 
+    let newPlayer = req.body
+    let newPlayersName = newPlayer.name
+    let isNameRepeated = false
+
+    //let player = players.find(p => p.name == newPlayersName)
+
+    for(let i = 0; i < players.length; i++) {
+        if(players[i].name == newPlayersName) {
+            isNameRepeated = true;
+            break;
+        }
+    }
+
+    //undefined is same as false/ a falsy value
+    if (isNameRepeated) {
+        //Player exists
+        res.send("This player was already added!")
+    } else {
+        //New entry
+        players.push(newPlayer)
+        res.send(players)
+    }
+
+       res.send(  { data: players , status: true }  )
+   })
+
 
 module.exports = router;
