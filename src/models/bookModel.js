@@ -6,12 +6,15 @@ const bookSchema = new mongoose.Schema( {
         required: true
     },
     
-    year: {type: Number, default: 2021},
+    year: {type: Number,
+         default: 2021},
     
-    tags: [{authorName: String, totalPages: Number, stockAvailable: Boolean}],
+    tags: [{authorName: String,
+         totalPages: Number,
+          stockAvailable: Boolean}],
     
    // isPublished: Boolean,
-    prices: {
+    price: {
         indianPrice: String,
         europePrice: String,
     },
