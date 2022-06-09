@@ -15,9 +15,11 @@ const createNewBook= async function(req, res){
          return x._id.toString()
 
      });
+     
      let publisherid = publisherdetail.map(function (x){
         return x._id.toString()
      });
+
      if(!(bookData.author && bookData.publisher)){
          res.send({msg: "error: type missing"})}
          else if(!(authid.includes(bookData.author) && publisherid.includes( bookData.publisher)))
@@ -30,7 +32,7 @@ let allBooks = await BookModel.find().populate("author").populate("publisher")
 res.send({mgs: allBooks})
   }
 module.exports.createNewBook= createNewBook
-module.exports.getBookDetails= getBookDetail
+module.exports.getBookDetails= getBookDetails
 
 // const createBook= async function (req, res) {
 //     let book = req.body
