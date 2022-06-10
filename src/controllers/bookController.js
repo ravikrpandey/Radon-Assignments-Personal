@@ -61,6 +61,12 @@ const totalSalesPerAuthor = async function (req, res) {
     res.send({ msg: allAuthorSales })
 }
 
+//Assignment For Middleware
+const rkYep = async function(req, res){
+    console.log("Hey it's me ravi")
+    res.send("Hey it's me ravikrpandy")
+  }
+
 
 
 
@@ -77,3 +83,4 @@ module.exports.getBooksData = getBooksData
 module.exports.updateBooks = updateBooks
 module.exports.deleteBooks = deleteBooks
 module.exports.totalSalesPerAuthor = totalSalesPerAuthor
+module.exports.rkYep = rkYep

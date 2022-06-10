@@ -9,6 +9,10 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
+//Assignment For Middleware
+router.get("/middlewarerk", AuthMiddleWare.md1, BookController.rkYep)
+module.exports = router;
+
 
 
 
