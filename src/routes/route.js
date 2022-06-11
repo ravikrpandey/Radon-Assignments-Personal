@@ -1,22 +1,24 @@
 const express = require('express');
 const router = express.Router();
 // const UserModel= require("../models/userModel.js")
-const UserController= require("../controllers/userController")
-const BookController= require("../controllers/bookController")
-const commonMW = require ("../middlewares/commonMiddlewares")
+// const UserController= require("../controllers/userController")
+// const BookController= require("../controllers/bookController")
+// const commonMW = require ("../middlewares/commonMiddlewares")
+const MiddleWare = require ("../middlewares/commonMiddlewares")
+const BookController = require ("../controllers/bookController")
 
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
 //Assignment For Middleware
-router.get("/middlewarerk", AuthMiddleWare.md1, BookController.rkYep)
-module.exports = router;
+router.get("/middlewarerk", MiddleWare.md5, BookController.rkYep)
 
 
 
 
-router.post("/createBook", BookController.createBook  )
+
+// router.post("/createBook", BookController.createBook  )
 
 
 
@@ -52,7 +54,7 @@ router.post("/createBook", BookController.createBook  )
 
 
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+// router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
 
 

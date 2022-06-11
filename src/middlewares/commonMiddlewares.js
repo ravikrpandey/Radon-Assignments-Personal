@@ -2,7 +2,7 @@
 const requestIp = require("request-ip")
 const moment = require("moment")
 
-const md1 = function(req, res, next){
+const md5 = function(req, res, next){
     const pathName = req.path;
     const clintIp = requestIp.getClientIp(req);
    let todays = moment().format();
@@ -11,7 +11,7 @@ const md1 = function(req, res, next){
 
  };
 
- module.exports.md1 = md1
+ module.exports.md5 = md5
 
 
 
