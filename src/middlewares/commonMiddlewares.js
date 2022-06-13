@@ -1,4 +1,26 @@
 
+
+const checkIsFreeAppUser = async function (req, res, next) {
+    let check = req.headers
+
+    if (!check ['isFreeAppUser']) {
+        res.send({msg: "not a free app user"})
+    
+    }else{
+    next()
+}
+}
+
+module.exports.checkIsFreeAppUser = checkIsFreeAppUser
+
+
+
+
+
+
+
+
+
 const mid1= function ( req, res, next) {
     req.falana= "hi there. i am adding something new to the req object"
     console.log("Hi I am a middleware named Mid1")
