@@ -5,7 +5,7 @@ const MidProductSchema = new mongoose.Schema( {
 
     category: {
         type: String,
-        enum: ["book", "others"]
+        enum: ["book", "others","pencil", "pen"]
     },
 
     price: {

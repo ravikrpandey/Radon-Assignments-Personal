@@ -11,7 +11,7 @@ const MidUserSchema = new mongoose.Schema( {
   age: Number,
   gender: {
     type: String,
-    enum:["male", "female", "other", ]
+    enum:["male", "female", "other"]
   },
   
   isFreeAppUser: {

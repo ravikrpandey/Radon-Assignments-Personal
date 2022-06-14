@@ -11,7 +11,7 @@ const MidOrderSchema = new mongoose.Schema( {
         type: objectId,
         ref:'MidProduct'
     },
-	isFreeAppUser:Boolean, 
+	isFreeAppUser: Boolean, 
 	date: String
 
 }, {timestamps: true});
