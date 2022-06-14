@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
-// Dubble OK OK
+
 const createaUser = async function (req, res) {
   let userData = req.body;
   let savedData = await userModel.create(userData);
   res.send({ msg: savedData });
 };
-// Dubble OK OK
+
 const loginUser = async function (req, res) {
     let userName = req.body.emailId;
     let password = req.body.password;
@@ -22,7 +22,7 @@ const loginUser = async function (req, res) {
   res.setHeader("x-auth-token", token);
   res.send({ status: true, token: token });
 };
-// Dubble OK OK
+
 const getUserData = async function (req, res) {
     let token = req.headers["x-Auth-token"];
     if (!token) token = req.headers["x-auth-token"];
@@ -37,7 +37,7 @@ const getUserData = async function (req, res) {
 
   res.send({ status: true, data: userDetails });
 };
-// Dubble OK OK
+
 const updateUser = async function (req, res) {
   let UserId = req.params.userId
   let checkId= await userModel.findById(UserId)
@@ -45,8 +45,9 @@ const updateUser = async function (req, res) {
  return res.send({ status: false, msg: "No such user exists" });
 let UserUpdated = await userModel.findOneAndUpdate({_id:checkId},{$set:{firstName: "Ravikrpandey"}})
 res.send({status: "Upadted", msg: UserUpdated})
+
 };
-// Dubble OK OK
+
 const deleteUser= async function(req, res){
 let UserId1= req.params.userId
 let checkId1= await userModel.findById(UserId1)
