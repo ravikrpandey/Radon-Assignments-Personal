@@ -58,30 +58,39 @@ const loginUser = async function (req, res) {
 
 const getUserData = async function (req, res) {
 
+  try {
+    let userId = req.params.userId;
+    let userDetails = await userModel.findById(userId);
 
-  let userId = req.params.userId;
-  let userDetails = await userModel.findById(userId);
-  if (!userDetails)
-    return res.send({ status: false, msg: "No such user exists" });
+    if (!userDetails)
+      return res.status(401).send({ status: false, msg: "No such user exists" });
+    res.status(200).send({ status: true, data: userDetails });
 
-
-
-  res.send({ status: true, data: userDetails });
+  } catch (err) {
+    console.log("This is the error:", err.message)
+    res.status(500).send({ mgs: "Error", error: err.message })
+  }
 };
+
 
 const updateUser = async function (req, res) {
 
+  try {
+    let userId = req.params.userId;
+    let user = await userModel.findById(req.params.userId);
 
-  let userId = req.params.userId;
-  let user = await userModel.findById(req.params.userId);
+    if (!user) {
+      return res.status(401).send("No such user exists");
+    }
 
-  if (!user) {
-    return res.send("No such user exists");
+    let userData = req.body;
+    let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, { new: true });
+    res.status(200).send({ msg: "updated Successfully", data: updatedUser });
+
+  } catch (err) {
+    console.log("This is the error:", err.message)
+    res.status(500).send({ mgs: "Error", error: err.message })
   }
-
-  let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, { new: true });
-  res.send({ msg: "updated Successfully", data: updatedUser });
 };
 
 const deleteUser = async function (req, res) {
@@ -89,7 +98,7 @@ const deleteUser = async function (req, res) {
     let userId = req.params.userId
 
     let user = await userModel.findById(req.params.userId)
-    if (!user) return res.send({ status: false, msg: 'No such user exists' })
+    if (!user) return res.status(401).send({ status: false, msg: 'No such user exists' })
 
 
     let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, { $set: { isDelete: true } }, { new: true });
@@ -101,13 +110,13 @@ const deleteUser = async function (req, res) {
 
   }
 
-}
+};
 
 const postMessage = async function (req, res) {
   try {
     let message = req.body.message
-    if(Object.keys(data).length == 0)
-     return res.status(400).send({Status: false, msg: "Please Don't Give Blank It"})
+    if (Object.keys(data).length == 0)
+      return res.status(400).send({ Status: false, msg: "Please Don't Give Blank It" })
     let user = await userModel.findById(req.params.userId)
 
     if (!user) return res.status(401).send({ status: false, msg: 'No such user exists' })
