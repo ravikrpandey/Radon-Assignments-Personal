@@ -31,6 +31,6 @@ const authorise = function(req, res, next) {
     return res.send({ status: false, msg: "token is invalid" });
     next()
 }
-
+ 
 module.exports.authenticate = authenticate
 module.exports.authorise = authorise
